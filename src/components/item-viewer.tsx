@@ -10,7 +10,7 @@ import { ShareItemButton } from "./share-button";
 import { Accordion } from "./ui/accordion";
 import { Button } from "./ui/button";
 import { CommonCalculations } from "./calculations/common";
-import { FinancialCalculations } from "./calculations/financial";
+import { FinancialCalculations } from "./calculations/financial-common";
 
 export const ItemViewer = () => {
   const selected = useSelected();
