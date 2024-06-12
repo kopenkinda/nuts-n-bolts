@@ -199,16 +199,7 @@ const store = create(
           }));
         },
       },
-      items: [
-        createFakeItem(),
-        createFakeItem(true),
-        createFakeItem(true),
-        createFakeItem(),
-        createFakeItem(),
-        createFakeItem(true),
-        createFakeItem(),
-        createFakeItem(),
-      ],
+      items: [],
     }),
     {
       name: "app-items",
