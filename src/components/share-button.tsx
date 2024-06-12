@@ -28,7 +28,7 @@ export function ShareItemButton({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size="icon" variant="secondary" className={className}>
+        <Button size="icon" variant="outline" className={className}>
           <ShareIcon />
         </Button>
       </DialogTrigger>
