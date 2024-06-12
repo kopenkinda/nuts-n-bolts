@@ -13,43 +13,55 @@ export function FinancialCalculations({
     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
       <Card>
         <CardTitle>НДС, 20%</CardTitle>
-        <CardHighlight>{results.financials.VATinCurrency}</CardHighlight>
+        <CardHighlight>
+          {results.financials.VATinCurrency.formatted}
+        </CardHighlight>
       </Card>
       <Card>
         <CardTitle>Наша цена без НДС</CardTitle>
-        <CardHighlight>{results.financials.priceWithoutVAT}</CardHighlight>
+        <CardHighlight>
+          {results.financials.priceWithoutVAT.formatted}
+        </CardHighlight>
       </Card>
       <Card>
         <CardTitle>Приход на счет</CardTitle>
-        <CardHighlight>{results.financials.estimatedProfit}</CardHighlight>
+        <CardHighlight>
+          {results.financials.estimatedProfit.formatted}
+        </CardHighlight>
       </Card>
       <Card>
         <CardTitle>Расходы</CardTitle>
-        <CardHighlight>{results.financials.expenses}</CardHighlight>
+        <CardHighlight>{results.financials.expenses.formatted}</CardHighlight>
       </Card>
       <Card>
         <CardTitle>Развитие</CardTitle>
-        <CardHighlight>{results.financials.evolution}</CardHighlight>
+        <CardHighlight>{results.financials.evolution.formatted}</CardHighlight>
       </Card>
       <Card>
         <CardTitle>Дельта</CardTitle>
-        <CardHighlight>{results.financials.delta}</CardHighlight>
+        <CardHighlight>{results.financials.delta.formatted}</CardHighlight>
       </Card>
       <Card>
         <CardTitle>Налог к оплате</CardTitle>
-        <CardHighlight>{results.financials.taxes}</CardHighlight>
+        <CardHighlight>{results.financials.taxes.formatted}</CardHighlight>
       </Card>
       <Card>
         <CardTitle>Теория дохода</CardTitle>
-        <CardHighlight>{results.financials.profitProjection}</CardHighlight>
+        <CardHighlight>
+          {results.financials.profitProjection.formatted}
+        </CardHighlight>
       </Card>
       <Card>
         <CardTitle>Рентабельность</CardTitle>
-        <CardHighlight>{results.financials.rentabilityInPercent}</CardHighlight>
+        <CardHighlight>
+          {results.financials.rentabilityInPercent.formatted}
+        </CardHighlight>
       </Card>
       <Card>
         <CardTitle>Расходы</CardTitle>
-        <CardHighlight>{results.financials.exensesInPercent}</CardHighlight>
+        <CardHighlight>
+          {results.financials.exensesInPercent.formatted}
+        </CardHighlight>
       </Card>
     </div>
   );

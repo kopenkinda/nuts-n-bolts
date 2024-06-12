@@ -32,15 +32,24 @@ const costFormatter = Intl.NumberFormat("ru-RU", {
 });
 
 function amount(num: number, unit: string) {
-  return num.toFixed(0) + " " + unit;
+  return {
+    raw: num,
+    formatted: num.toFixed(0) + " " + unit,
+  };
 }
 
 function cost(num: number) {
-  return costFormatter.format(num);
+  return {
+    raw: num,
+    formatted: costFormatter.format(num),
+  };
 }
 
 function percent(num: number) {
-  return (num * 100).toFixed(2) + " %";
+  return {
+    raw: num,
+    formatted: (num * 100).toFixed(2) + " %",
+  };
 }
 
 export const format = {

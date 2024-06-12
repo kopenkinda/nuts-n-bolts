@@ -57,6 +57,33 @@ export const calculateCommon = (item: Store["items"][number]) => {
   const exensesInPercent = expenses / estimatedProfit;
 
   // Materials
+  const specificGravity =
+    ((3.14 * Math.pow(item.settings.diameterInMillimeters, 2)) / 400) *
+    100 *
+    item.settings.specificGravityOfSteel;
+  const pieceWeightInKilograms =
+    (specificGravity * item.settings.lengthInMillimeters) / 1000;
+  const totalWeightInKilograms =
+    pieceWeightInKilograms * item.settings.piecesAmount;
+  const amountOfPiecesFromOneSheet = Math.floor(
+    (item.settings.materialLength * 1000) / item.settings.lengthInMillimeters
+  );
+  const sheetsAmount = Math.ceil(
+    item.settings.piecesAmount / amountOfPiecesFromOneSheet
+  );
+  const specificGravityOfSheet =
+    ((3.14 * Math.pow(item.settings.usedMaterialInMillimeters, 2)) / 400) *
+    100 *
+    item.settings.specificGravityOfSteel;
+  const totalWeightOfSheetInKilograms =
+    sheetsAmount * specificGravityOfSheet * item.settings.materialLength;
+  const cutoff =
+    item.settings.materialLength * 1000 -
+    amountOfPiecesFromOneSheet * item.settings.lengthInMillimeters;
+  const cutoffWeight = (cutoff / 1000) * specificGravityOfSheet;
+  const totalCutoffWeight = cutoffWeight * sheetsAmount;
+  const shavings =
+    totalWeightOfSheetInKilograms - totalCutoffWeight - totalWeightInKilograms;
 
   return {
     common: {
@@ -110,7 +137,25 @@ export const calculateCommon = (item: Store["items"][number]) => {
         cost: format.cost(packagingCost),
       },
     },
-    materials: {},
+    materials: {
+      specificGravity: format.amount(specificGravity, "кг/м.п."),
+      pieceWeightInKilograms: format.amount(pieceWeightInKilograms, "кг"),
+      totalWeightInKilograms: format.amount(totalWeightInKilograms, "кг"),
+      amountOfPiecesFromOneSheet: format.amount(
+        amountOfPiecesFromOneSheet,
+        "шт"
+      ),
+      sheetsAmount: format.amount(sheetsAmount, "шт"),
+      specificGravityOfSheet: format.amount(specificGravityOfSheet, "кг/м.п."),
+      totalWeightOfSheetInKilograms: format.amount(
+        totalWeightOfSheetInKilograms,
+        "кг"
+      ),
+      cutoff: format.amount(cutoff, "мм"),
+      cutoffWeight: format.amount(cutoffWeight, "кг"),
+      totalCutoffWeight: format.amount(totalCutoffWeight, "кг"),
+      shavings: format.amount(shavings, "кг"),
+    },
   };
 };
 

@@ -10,12 +10,14 @@ export function CommonCalculations({ item }: { item: Store["items"][0] }) {
       <Card>
         <CardTitle>Производительность</CardTitle>
         <CardHighlight>
-          {results.common.performanceInPiecesPerShift}
+          {results.common.performanceInPiecesPerShift.formatted}
         </CardHighlight>
       </Card>
       <Card>
         <CardTitle>Расчетное время работы</CardTitle>
-        <CardHighlight>{results.common.estimatedWorkTimeInDays}</CardHighlight>
+        <CardHighlight>
+          {results.common.estimatedWorkTimeInDays.formatted}
+        </CardHighlight>
       </Card>
     </div>
   );
