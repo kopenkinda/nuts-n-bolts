@@ -31,10 +31,10 @@ const costFormatter = Intl.NumberFormat("ru-RU", {
   minimumFractionDigits: 2,
 });
 
-function amount(num: number, unit: string) {
+function amount(num: number, unit: string, precision = 0) {
   return {
     raw: num,
-    formatted: num.toFixed(0) + " " + unit,
+    formatted: num.toFixed(precision) + " " + unit,
   };
 }
 

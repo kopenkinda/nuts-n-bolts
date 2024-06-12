@@ -11,6 +11,7 @@ import { Accordion } from "./ui/accordion";
 import { Button } from "./ui/button";
 import { CommonCalculations } from "./calculations/common";
 import { FinancialCalculations } from "./calculations/financial-common";
+import { MaterialsCalculations } from "./calculations/materials-common";
 
 export const ItemViewer = () => {
   const selected = useSelected();
@@ -60,6 +61,7 @@ export const ItemViewer = () => {
           <span className="text-lg mt-6">Финансы</span>
           <FinancialCalculations item={selectedItem} />
           <span className="text-lg mt-6">Материалы</span>
+          <MaterialsCalculations item={selectedItem} />
           <span className="text-lg mt-6">Расходы</span>
         </div>
       </div>

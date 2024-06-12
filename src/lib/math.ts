@@ -138,23 +138,28 @@ export const calculateCommon = (item: Store["items"][number]) => {
       },
     },
     materials: {
-      specificGravity: format.amount(specificGravity, "кг/м.п."),
-      pieceWeightInKilograms: format.amount(pieceWeightInKilograms, "кг"),
-      totalWeightInKilograms: format.amount(totalWeightInKilograms, "кг"),
+      specificGravity: format.amount(specificGravity, "кг/м.п.", 2),
+      pieceWeightInKilograms: format.amount(pieceWeightInKilograms, "кг", 2),
+      totalWeightInKilograms: format.amount(totalWeightInKilograms, "кг", 2),
       amountOfPiecesFromOneSheet: format.amount(
         amountOfPiecesFromOneSheet,
         "шт"
       ),
       sheetsAmount: format.amount(sheetsAmount, "шт"),
-      specificGravityOfSheet: format.amount(specificGravityOfSheet, "кг/м.п."),
+      specificGravityOfSheet: format.amount(
+        specificGravityOfSheet,
+        "кг/м.п.",
+        2
+      ),
       totalWeightOfSheetInKilograms: format.amount(
         totalWeightOfSheetInKilograms,
-        "кг"
+        "кг",
+        2
       ),
-      cutoff: format.amount(cutoff, "мм"),
-      cutoffWeight: format.amount(cutoffWeight, "кг"),
-      totalCutoffWeight: format.amount(totalCutoffWeight, "кг"),
-      shavings: format.amount(shavings, "кг"),
+      cutoff: format.amount(cutoff, "мм", 2),
+      cutoffWeight: format.amount(cutoffWeight, "кг", 2),
+      totalCutoffWeight: format.amount(totalCutoffWeight, "кг", 2),
+      shavings: format.amount(shavings, "кг", 2),
     },
   };
 };
