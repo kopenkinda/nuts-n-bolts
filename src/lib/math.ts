@@ -1,4 +1,5 @@
 import type { Store } from "@/store/app.store";
+import { format } from "@/lib/utils";
 
 const EVOLUTION_COEFFICIENT = 0.4;
 
@@ -59,76 +60,58 @@ export const calculateCommon = (item: Store["items"][number]) => {
 
   return {
     common: {
-      performanceInPiecesPerShift: amount(
+      performanceInPiecesPerShift: format.amount(
         performanceInPiecesPerShift,
         "дет/смена"
       ),
-      estimatedWorkTimeInDays: amount(estimatedWorkTimeInDays, "дней"),
+      estimatedWorkTimeInDays: format.amount(estimatedWorkTimeInDays, "дней"),
     },
     financials: {
-      VATinCurrency: cost(VATinCurrency),
-      priceWithoutVAT: cost(priceWithoutVAT),
-      estimatedProfit: cost(estimatedProfit),
-      expenses: cost(expenses),
-      evolution: cost(evolution),
-      delta: cost(delta),
-      taxes: cost(taxes),
-      profitProjection: cost(profitProjection),
-      rentabilityInPercent: percent(rentabilityInPercent),
-      exensesInPercent: percent(exensesInPercent),
+      VATinCurrency: format.cost(VATinCurrency),
+      priceWithoutVAT: format.cost(priceWithoutVAT),
+      estimatedProfit: format.cost(estimatedProfit),
+      expenses: format.cost(expenses),
+      evolution: format.cost(evolution),
+      delta: format.cost(delta),
+      taxes: format.cost(taxes),
+      profitProjection: format.cost(profitProjection),
+      rentabilityInPercent: format.percent(rentabilityInPercent),
+      exensesInPercent: format.percent(exensesInPercent),
     },
     expenditure: {
       machine: {
-        amount: amount(estimatedWorkTimeInDays, "дней"),
-        cost: cost(machineRentCost),
+        amount: format.amount(estimatedWorkTimeInDays, "дней"),
+        cost: format.cost(machineRentCost),
       },
       electricity: {
-        amount: amount(electricityAmount, "кВт/ч"),
-        cost: cost(electricityCost),
+        amount: format.amount(electricityAmount, "кВт/ч"),
+        cost: format.cost(electricityCost),
       },
       operator: {
-        amount: amount(estimatedWorkTimeInDays, "дней"),
-        cost: cost(operatorCost),
+        amount: format.amount(estimatedWorkTimeInDays, "дней"),
+        cost: format.cost(operatorCost),
       },
       director: {
-        amount: amount(estimatedWorkTimeInDays, "дней"),
-        cost: cost(directorCost),
+        amount: format.amount(estimatedWorkTimeInDays, "дней"),
+        cost: format.cost(directorCost),
       },
       rent: {
-        amount: amount(estimatedWorkTimeInDays, "дней"),
-        cost: cost(rentCost),
+        amount: format.amount(estimatedWorkTimeInDays, "дней"),
+        cost: format.cost(rentCost),
       },
       materials: {
-        amount: amount(item.settings.piecesAmount, "шт"),
-        cost: cost(materialsCost),
+        amount: format.amount(item.settings.piecesAmount, "шт"),
+        cost: format.cost(materialsCost),
       },
-      deliveryCostFinal: cost(deliveryCostFinal),
-      loadingCostFinal: cost(loadingCostFinal),
+      deliveryCostFinal: format.cost(deliveryCostFinal),
+      loadingCostFinal: format.cost(loadingCostFinal),
       packaging: {
-        amount: amount(packagingAmount, "шт"),
-        cost: cost(packagingCost),
+        amount: format.amount(packagingAmount, "шт"),
+        cost: format.cost(packagingCost),
       },
     },
     materials: {},
   };
 };
-
-export function amount(num: number, unit: string) {
-  return num.toFixed(0) + " " + unit;
-}
-
-const costFormatter = Intl.NumberFormat("ru-RU", {
-  style: "currency",
-  currency: "RUB",
-  minimumFractionDigits: 2,
-});
-
-export function cost(num: number) {
-  return costFormatter.format(num);
-}
-
-export function percent(num: number) {
-  return (num * 100).toFixed(2) + " %";
-}
 
 export type CommonResults = ReturnType<typeof calculateCommon>;

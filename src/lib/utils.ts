@@ -24,3 +24,27 @@ export const extractFields = <
 ) => arr.map((obj) => extractField<T[number], K>(obj, key));
 
 export type EmptyObject = Record<string, never>;
+
+const costFormatter = Intl.NumberFormat("ru-RU", {
+  style: "currency",
+  currency: "RUB",
+  minimumFractionDigits: 2,
+});
+
+function amount(num: number, unit: string) {
+  return num.toFixed(0) + " " + unit;
+}
+
+function cost(num: number) {
+  return costFormatter.format(num);
+}
+
+function percent(num: number) {
+  return (num * 100).toFixed(2) + " %";
+}
+
+export const format = {
+  amount,
+  cost,
+  percent,
+};
